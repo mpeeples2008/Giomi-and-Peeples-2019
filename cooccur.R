@@ -17,11 +17,8 @@ cooccur <- function(x) {
   # convert expected count to expected proportion
   p <- expect/nrow(x)
   
-  #calculate the denominator of the equation
-  denm <- sqrt(expect*(1-p)) 
-  
   # calculate final matrix of scores and output
-  out <- (obs-expect)/denm 
+  out <- (obs-expect)/(sqrt(expect*(1-p))) 
   diag(out) <- 0
   return(out)}
 
