@@ -1,4 +1,6 @@
 ## Co-occurrence assessment script
+## This function expects a binary data frame object that contains only 1s and 0s with the contexts under consideration as rows and the 
+## categories as columns and each cell represents the presence or absence of a particular category in a particular context
 
 cooccur <- function(x) {
   
@@ -8,6 +10,7 @@ cooccur <- function(x) {
   # calculated observed co-occurrences through matrix multiplication
   obs <- t(as.matrix(x)) %*% (as.matrix(x)) 
   diag(obs) <- 0
+  
   # create matrix of expected values based on proportional occurrence 
   expect <- matrix(0,nrow(obs),ncol(obs)) 
   for (i in 1:nrow(obs)) {
